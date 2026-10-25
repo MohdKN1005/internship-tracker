@@ -1,12 +1,10 @@
 # Internship Tracker
 
-A full-stack internship application tracker built with **Java, Spring Boot, Thymeleaf, Spring Security, JPA, MySQL, Docker, and Railway**.
+A full-stack internship application tracker built with **Java, Spring Boot, Thymeleaf, Spring Security, JPA, MySQL and Docker**.
 
 The app gives students a private workspace to track internship applications from initial application through interview, offer, or rejection, while preserving stage history, follow-up reminders, and pipeline analytics.
 
-**Live demo:** https://internship-tracker-production-6156.up.railway.app
-
----
+> The hosted Railway demo is no longer running. Run the project locally with Docker using the steps below.
 
 ## Features
 
@@ -35,7 +33,6 @@ The app gives students a private workspace to track internship applications from
 - Custom 403, 404, and 500 pages
 - JUnit 5 and Mockito service-layer tests
 - Dockerized production build
-- Railway deployment with MySQL
 - Spring Boot Actuator health endpoint
 
 ---
@@ -66,10 +63,9 @@ The app gives students a private workspace to track internship applications from
 - AssertJ
 - Spring Security Test
 
-### Deployment
+### DevOps
 - Docker
-- Railway
-- Railway MySQL
+- Docker Compose
 
 ---
 
@@ -242,7 +238,7 @@ The project contains JUnit 5 and Mockito tests for important service-layer behav
 - follow-up flagging
 - dashboard calculations
 
-The production Docker image currently packages with `-DskipTests`, so tests are compiled during the image build but are not executed as part of the deployment build.
+The Docker image packages the app with `-DskipTests`, so tests are compiled during the image build but are not executed as part of it.
 
 To run the full test suite locally:
 
@@ -262,7 +258,7 @@ mvn test
 Clone the repository:
 
 ```bash
-git clone https://github.com/zzchatgpp/internship-tracker.git
+git clone https://github.com/MohdKN1005/internship-tracker.git
 cd internship-tracker
 ```
 
@@ -325,39 +321,35 @@ Do not commit real production credentials.
 
 ---
 
-## Production Deployment
+## Deployment
 
-The live version is deployed on **Railway**.
+The app was previously deployed on **Railway** as a Docker container connected to a Railway MySQL database. That hosted demo is no longer running, so the project is meant to be run locally with Docker as described above. See [RAILWAY_DEPLOYMENT.md](RAILWAY_DEPLOYMENT.md) for the configuration that was used.
 
-The production architecture is:
+The deployment setup looked like this:
 
 ```text
 Browser
    |
    v
-Railway HTTPS Domain
+HTTPS domain
    |
    v
 Spring Boot Docker Container
    |
    v
-Railway Private Network
+Private network
    |
    v
 MySQL
 ```
 
-The Spring Boot service connects to MySQL using Railway environment-variable references rather than hard-coded credentials.
+The Spring Boot service connected to MySQL using environment-variable references rather than hard-coded credentials.
 
 Health checks use:
 
 ```text
 /actuator/health
 ```
-
-Live application:
-
-https://internship-tracker-production-6156.up.railway.app
 
 ---
 
@@ -416,12 +408,3 @@ Potential next improvements include:
 - interview scheduling
 - export to CSV
 - role-based administrative views
-
----
-
-## Live Demo
-
-**Internship Tracker:**  
-https://internship-tracker-production-6156.up.railway.app
-
-Create an account to test the private application-tracking workflow.
