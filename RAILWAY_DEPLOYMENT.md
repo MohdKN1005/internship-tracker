@@ -1,5 +1,7 @@
 # Railway Deployment — Internship Tracker
 
+Demo no longer running
+
 This project is prepared for Railway using the Dockerfile and a Railway MySQL service.
 
 Application variables:
